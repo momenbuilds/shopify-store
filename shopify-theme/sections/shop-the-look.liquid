@@ -1,0 +1,46 @@
+{%- if section.settings.title != blank -%}
+  <h2 class="stl-title">{{ section.settings.title }}</h2>
+{%- endif -%}
+<div class="stl-grid">
+  {%- for block in section.blocks -%}
+    <a href="{{ block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
+      <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" loading="lazy">
+    </a>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "SHOP THE LOOK" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "image_url", "label": "Image URL" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the look",
+      "blocks": [
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_02_7d45b958-be8c-43f6-9510-dc136bb7f203.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MH228E-58PS5740000-1.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU781GB6CZ399888-01.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-01_88e988b7-1ad7-4bca-baab-3a5862cc27d9.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-01.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E06000888_708f5046-311a-4e1d-86c9-4da52d8ce17d.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/mu399d22w00888_1_1.jpg" } },
+        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU291D22W00888-01.jpg" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

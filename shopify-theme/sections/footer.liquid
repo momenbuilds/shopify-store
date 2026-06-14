@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  {{ section.settings.line1 }}<br>
+  &copy; {{ 'now' | date: '%Y' }}, {{ shop.name }}
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "line1", "label": "Top line", "default": "For CA Residents | Site Accessibility" }
+  ]
+}
+{% endschema %}

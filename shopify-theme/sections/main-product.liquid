@@ -1,0 +1,214 @@
+<nav class="pdp-crumb">
+  <a href="{{ routes.root_url }}">Home</a> /
+  {%- if product.type != blank -%}<a href="{{ routes.all_products_collection_url }}">{{ product.type }}</a> /{%- endif -%}
+  <span>{{ product.title }}</span>
+</nav>
+
+<div class="pdp">
+  <!-- GALLERY -->
+  <div class="pdp-gallery" data-gallery>
+    <div class="pdp-stage">
+      {%- if product.featured_image -%}
+        <img id="pdp-main-image" src="{{ product.featured_image | image_url: width: 1200 }}"
+             alt="{{ product.featured_image.alt | escape | default: product.title }}" width="1200" height="1600">
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="pdp-thumbs">
+        {%- for image in product.images -%}
+          <button type="button" class="pdp-thumb{% if forloop.first %} sel{% endif %}"
+                  data-full="{{ image | image_url: width: 1200 }}" aria-label="View image {{ forloop.index }}">
+            <img src="{{ image | image_url: width: 200 }}" alt="" width="200" height="266" loading="lazy">
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- INFO -->
+  <div class="pdp-info">
+    <p class="pdp-eyebrow">{{ product.vendor | default: product.type }}</p>
+    <h1>{{ product.title }}</h1>
+
+    <div class="pdp-rating">
+      <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="rating-text">4.8 &middot; 200+ reviews</span>
+    </div>
+
+    <p class="pdp-price">{{ product.price | money }}{% if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif %}</p>
+
+    {%- if product.metafields.custom.tagline -%}
+      <p class="pdp-tagline">{{ product.metafields.custom.tagline }}</p>
+    {%- endif -%}
+
+    {%- form 'product', product, id: 'product-form' -%}
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="opt">
+            <div class="label">{{ option.name }}: <span class="opt-current" data-current>{{ option.selected_value }}</span></div>
+            <div class="opt-buttons" data-option-index="{{ forloop.index0 }}">
+              {%- for value in option.values -%}
+                <button type="button" class="opt-btn{% if option.selected_value == value %} sel{% endif %}"
+                        data-value="{{ value | escape }}">{{ value }}</button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <div class="opt">
+        <div class="label">Quantity</div>
+        <div class="qty">
+          <button type="button" class="qty-btn" data-qty="-1" aria-label="Decrease">&minus;</button>
+          <input type="number" name="quantity" id="qty-input" value="1" min="1" inputmode="numeric">
+          <button type="button" class="qty-btn" data-qty="1" aria-label="Increase">+</button>
+        </div>
+      </div>
+
+      <select name="id" id="variant-select" class="visually-hidden" aria-hidden="true">
+        {%- for variant in product.variants -%}
+          <option value="{{ variant.id }}"
+                  {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                  {% unless variant.available %}disabled{% endunless %}>{{ variant.title }}</option>
+        {%- endfor -%}
+      </select>
+
+      <button type="submit" name="add" class="addbtn"{% unless product.available %} disabled{% endunless %}>
+        {%- if product.available -%}Add To Bag &middot; {{ product.price | money }}{%- else -%}Sold Out{%- endif -%}
+      </button>
+    {%- endform -%}
+
+    <ul class="pdp-trust">
+      <li>&#128666; Free U.S. shipping over $75</li>
+      <li>&#8634; 30-day easy returns</li>
+      <li>&#128274; Secure checkout</li>
+    </ul>
+
+    {%- if product.description != blank -%}
+      <details class="pdp-acc" open>
+        <summary>Description</summary>
+        <div class="pdp-desc">{{ product.description }}</div>
+      </details>
+    {%- endif -%}
+    <details class="pdp-acc">
+      <summary>Details &amp; Care</summary>
+      <div class="pdp-desc">
+        <ul>
+          <li>Designed in California, crafted for everyday wear</li>
+          <li>Machine wash cold, lay flat to dry</li>
+          <li>Do not bleach or tumble dry</li>
+        </ul>
+      </div>
+    </details>
+    <details class="pdp-acc">
+      <summary>Shipping &amp; Returns</summary>
+      <div class="pdp-desc">Free shipping on U.S. orders over $75. Most orders ship within 1&ndash;2 business days. Enjoy 30 days to return unworn items with tags for a full refund.</div>
+    </details>
+    <details class="pdp-acc">
+      <summary>Size &amp; Fit</summary>
+      <div class="pdp-desc">Relaxed, true-to-size fit. Most styles come in one size or XS/S and S/M. Between sizes? Size down for a fitted look, up for relaxed.</div>
+    </details>
+  </div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<section class="pdp-highlights">
+  <div class="hl"><span class="hl-ic">&#10024;</span><h4>Soft Premium Feel</h4><p>Chosen fabrics and finishes that feel good from the first wear.</p></div>
+  <div class="hl"><span class="hl-ic">&#127881;</span><h4>Everyday Versatile</h4><p>Mixes effortlessly with the rest of your wardrobe, day or night.</p></div>
+  <div class="hl"><span class="hl-ic">&#9829;</span><h4>Loved By Thousands</h4><p>A repeat favorite with a 4.8-star average across reviews.</p></div>
+  <div class="hl"><span class="hl-ic">&#9851;</span><h4>Made To Last</h4><p>Quality construction that holds its shape wash after wash.</p></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="pdp-reviews">
+  <h2 class="stl-title">WHAT CUSTOMERS SAY</h2>
+  <div class="review-grid">
+    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Exactly what I hoped for &mdash; the fit is perfect and it feels so soft. Already wearing it on repeat.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
+    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Great quality for the price. Shipping was quick and it looks just like the photos.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
+    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Got so many compliments. Goes with everything in my closet. Will be buying more colors.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
+  </div>
+</section>
+
+<!-- RELATED -->
+{%- assign rec_count = 0 -%}
+<section class="pdp-rec-wrap">
+  <h2 class="stl-title">YOU MAY ALSO LIKE</h2>
+  <div class="product-grid">
+    {%- for p in collections.all.products -%}
+      {%- if p.id != product.id and p.type == product.type and rec_count < 4 -%}
+        <a class="pcard" href="{{ p.url }}">
+          <div class="imgwrap">
+            <img src="{{ p.featured_image | image_url: width: 600 }}" width="600" height="800" alt="{{ p.title | escape }}" loading="lazy">
+            {%- if p.images[1] %}<img class="alt" src="{{ p.images[1] | image_url: width: 600 }}" width="600" height="800" alt="" loading="lazy">{% endif -%}
+          </div>
+          <div class="t">{{ p.title }}</div>
+          <div class="p">{{ p.price | money }}</div>
+        </a>
+        {%- assign rec_count = rec_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if rec_count == 0 -%}
+      {%- for p in collections.all.products limit: 4 -%}
+        {%- unless p.id == product.id -%}
+        <a class="pcard" href="{{ p.url }}">
+          <div class="imgwrap"><img src="{{ p.featured_image | image_url: width: 600 }}" width="600" height="800" alt="{{ p.title | escape }}" loading="lazy"></div>
+          <div class="t">{{ p.title }}</div>
+          <div class="p">{{ p.price | money }}</div>
+        </a>
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+(function(){
+  // gallery
+  var stage=document.getElementById('pdp-main-image');
+  document.querySelectorAll('.pdp-thumb').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.pdp-thumb').forEach(function(x){x.classList.remove('sel')});
+      t.classList.add('sel');
+      if(stage) stage.src=t.getAttribute('data-full');
+    });
+  });
+  // quantity
+  var qi=document.getElementById('qty-input');
+  document.querySelectorAll('.qty-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=parseInt(qi.value||'1',10)+parseInt(b.getAttribute('data-qty'),10);
+      qi.value=Math.max(1,v);
+    });
+  });
+  // variant options
+  var form=document.getElementById('product-form'); if(!form) return;
+  var sel=document.getElementById('variant-select');
+  var groups=form.querySelectorAll('.opt-buttons');
+  function update(){
+    var chosen=[];
+    groups.forEach(function(g){
+      var b=g.querySelector('.opt-btn.sel');
+      var val=b?b.getAttribute('data-value'):'';
+      chosen.push(val);
+      var cur=g.parentElement.querySelector('[data-current]'); if(cur) cur.textContent=val;
+    });
+    var want=chosen.join(' / ');
+    for(var i=0;i<sel.options.length;i++){
+      if(sel.options[i].text===want || (groups.length===1 && sel.options[i].text===chosen[0])){ sel.selectedIndex=i; break; }
+    }
+  }
+  groups.forEach(function(g){
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('.opt-btn'); if(!b) return;
+      g.querySelectorAll('.opt-btn').forEach(function(x){x.classList.remove('sel')});
+      b.classList.add('sel'); update();
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

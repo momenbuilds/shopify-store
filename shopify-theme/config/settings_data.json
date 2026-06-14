@@ -1,0 +1,11 @@
+{
+  "current": {
+    "color_bg": "#ffffff",
+    "color_text": "#222222",
+    "color_accent": "#f6a5b8",
+    "heading_font": "serif"
+  },
+  "presets": {
+    "Default": {}
+  }
+}

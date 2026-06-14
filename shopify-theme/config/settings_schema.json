@@ -1,0 +1,25 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "BM Clone Reference",
+    "theme_version": "1.0.0",
+    "theme_author": "Private design reference",
+    "theme_documentation_url": "https://shopify.dev/docs/themes",
+    "theme_support_url": "https://shopify.dev/docs/themes"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_bg", "label": "Background", "default": "#ffffff" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#222222" },
+      { "type": "color", "id": "color_accent", "label": "Heart / accent", "default": "#f6a5b8" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "select", "id": "heading_font", "label": "Headings", "default": "serif",
+        "options": [ {"value":"serif","label":"Serif"}, {"value":"sans","label":"Sans"} ] }
+    ]
+  }
+]

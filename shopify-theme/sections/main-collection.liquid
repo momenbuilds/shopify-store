@@ -1,0 +1,26 @@
+<div class="coll-head">
+  <h1>{{ collection.title | default: 'Shop' }}</h1>
+  <div class="count">{{ collection.products_count }} items</div>
+</div>
+<div class="product-grid">
+  {%- for product in collection.products -%}
+    <a class="pcard" href="{{ product.url }}">
+      <div class="imgwrap">
+        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy">
+        {%- if product.images[1] -%}
+          <img class="alt" src="{{ product.images[1] | image_url: width: 600 }}" alt="" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="t">{{ product.title }}</div>
+      <div class="p">{{ product.price | money }}</div>
+    </a>
+  {%- else -%}
+    <p style="padding:40px;text-align:center;grid-column:1/-1;color:#888">No products in this collection yet.</p>
+  {%- endfor -%}
+</div>
+
+{% paginate collection.products by 48 %}{% endpaginate %}
+
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

@@ -1,0 +1,48 @@
+<div class="topbar"></div>
+<header class="site-header">
+  <div class="header-row">
+    <div class="header-left">
+      {%- if section.settings.flag_url != blank -%}
+        <img class="flag" src="{{ section.settings.flag_url }}" alt="Region" loading="lazy">
+      {%- endif -%}
+    </div>
+    <a class="wordmark" href="{{ routes.root_url }}">
+      {{ section.settings.brand_left | default: shop.name }}<span class="heart">&#10084;</span>{{ section.settings.brand_right }}
+    </a>
+    <div class="header-right">
+      {%- if section.settings.crest_url != blank -%}
+        <img class="crest" src="{{ section.settings.crest_url }}" alt="" loading="lazy">
+      {%- endif -%}
+      <span class="icon">&#9906;</span>
+      <a href="{{ routes.account_login_url }}">SIGN IN</a>
+      <span class="icon">&#9776;</span>
+      <a href="{{ routes.cart_url }}" class="icon">&#128717;</a>
+    </div>
+  </div>
+  <nav class="main-nav">
+    {%- for link in linklists[section.settings.menu].links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- else -%}
+      <a href="{{ routes.all_products_collection_url }}">JUST IN</a>
+      <a href="{{ routes.all_products_collection_url }}">INTIMATES &amp; PAJAMAS</a>
+      <a href="{{ routes.all_products_collection_url }}">GRAPHICS</a>
+      <a href="{{ routes.all_products_collection_url }}">CLOTHING</a>
+      <a href="{{ routes.all_products_collection_url }}">NEW COLORS</a>
+      <a href="{{ routes.all_products_collection_url }}">PATTERNS</a>
+      <a href="{{ routes.all_products_collection_url }}">ACCESSORIES</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "brand_left", "label": "Brand name (left of heart)", "default": "Brandy" },
+    { "type": "text", "id": "brand_right", "label": "Brand name (right of heart)", "default": "Melville" },
+    { "type": "link_list", "id": "menu", "label": "Navigation menu" },
+    { "type": "text", "id": "flag_url", "label": "Flag image URL", "default": "https://flagcdn.com/w40/us.png" },
+    { "type": "text", "id": "crest_url", "label": "Crest image URL" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,317 @@
+[
+  {
+    "handle": "priscilla-pants",
+    "title": "Priscilla Pants",
+    "body_html": "<p>Easy, soft cotton-blend pants cut for an everyday relaxed fit. A stretch waistband moves with you from morning coffee to late-night drives. Pairs with everything in your closet.</p>",
+    "product_type": "Pants",
+    "options_name": "Size",
+    "variants": [
+      {
+        "option1": "XS/S",
+        "price": "24.00",
+        "inventory_quantity": 50
+      },
+      {
+        "option1": "S/M",
+        "price": "24.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/80166_OPA_002_26-Edit.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/IMG_2971.heic"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/IMG_3005.heic"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/IMG_3044_53a28ecd-f7e6-44d3-b06f-2f620bc95a0b.heic"
+      }
+    ]
+  },
+  {
+    "handle": "zelly-striped-top",
+    "title": "Zelly Striped Top",
+    "body_html": "<p>A lightweight striped top with a soft hand-feel and a flattering slim silhouette. Layer it or wear it solo \u2014 it sits perfectly under a cardigan or on its own all summer.</p>",
+    "product_type": "Tops",
+    "options_name": "Size",
+    "variants": [
+      {
+        "option1": "XS/S",
+        "price": "24.00",
+        "inventory_quantity": 50
+      },
+      {
+        "option1": "S/M",
+        "price": "24.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW935HP-Z166SZ28400MN.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW935HP-Z166SZ28400MN-1.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW935HP-Z166SZ28400MN-2.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW935HP-Z166SZ28400MN-3.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "justine-skirt",
+    "title": "Justine Skirt",
+    "body_html": "<p>A breezy mini skirt with effortless movement and a clean, timeless cut. Dress it up with heels or down with sneakers \u2014 it works either way.</p>",
+    "product_type": "Skirts",
+    "options_name": "Size",
+    "variants": [
+      {
+        "option1": "XS/S",
+        "price": "38.00",
+        "inventory_quantity": 50
+      },
+      {
+        "option1": "S/M",
+        "price": "38.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/ML082-Z316S1620000.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/ML082-Z316S1620000-4.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/ML082-Z316S1620000-3.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "skylar-flag-tank",
+    "title": "Skylar Flag Tank",
+    "body_html": "<p>A cropped tank with a bold graphic front and a soft, worn-in feel. The kind of staple you reach for again and again.</p>",
+    "product_type": "Tanks",
+    "options_name": "Size",
+    "variants": [
+      {
+        "option1": "One Size",
+        "price": "18.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_02_7d45b958-be8c-43f6-9510-dc136bb7f203.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_03_d13e787a-eafa-48a6-a7da-174e48442648.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_01_16921c2f-9011-4f33-a690-f22f11a12491.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_04.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/MW922-1338S07100UK_0.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "calina-halter-top",
+    "title": "Calina Halter Top",
+    "body_html": "<p>A delicate halter cut in a fresh seafoam tone. Ties at the neck for an adjustable fit and a clean open back.</p>",
+    "product_type": "Tops",
+    "options_name": "Size",
+    "variants": [
+      {
+        "option1": "XS/S",
+        "price": "16.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MH228E-58PS5740000-1.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MH228E-58PS5740000-2.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "stripe-makeup-bag",
+    "title": "Stripe Makeup Bag",
+    "body_html": "<p>A roomy striped pouch for makeup, chargers, or everyday odds and ends. Wipe-clean lining and a smooth zip keep it tidy in any bag.</p>",
+    "product_type": "Accessories",
+    "options_name": "Title",
+    "variants": [
+      {
+        "option1": "One Size",
+        "price": "18.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU781GB6CZ399888-01.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU781GB6CZ399888-02.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU781GB6CZ399888-03.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "floral-scrunchie",
+    "title": "Floral Scrunchie",
+    "body_html": "<p>A soft floral scrunchie with a gentle hold that won't crease or snag your hair. Easy to stack on your wrist when you're not wearing it.</p>",
+    "product_type": "Accessories",
+    "options_name": "Title",
+    "variants": [
+      {
+        "option1": "One Size",
+        "price": "3.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-01_88e988b7-1ad7-4bca-baab-3a5862cc27d9.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-02_60baa72a-67c0-4323-a130-6a3b28b9294a.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-03_472f756e-c664-4a35-8e51-9fd985ac345d.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-04.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "basic-scrunchie",
+    "title": "Basic Scrunchie",
+    "body_html": "<p>The everyday scrunchie in a clean solid tone. Holds your hair without the kink \u2014 goes with absolutely everything.</p>",
+    "product_type": "Accessories",
+    "options_name": "Title",
+    "variants": [
+      {
+        "option1": "One Size",
+        "price": "3.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-01.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-02.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-03.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-04.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "hoop-earrings",
+    "title": "Hoop Earrings",
+    "body_html": "<p>Lightweight everyday hoops with a smooth polished finish. Slim enough for stacking, sturdy enough for daily wear.</p>",
+    "product_type": "Jewelry",
+    "options_name": "Color",
+    "variants": [
+      {
+        "option1": "Silver",
+        "price": "5.00",
+        "inventory_quantity": 50
+      },
+      {
+        "option1": "Gold",
+        "price": "5.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E06000888_708f5046-311a-4e1d-86c9-4da52d8ce17d.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E02200888-03.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E06000888_e74f7123-7a34-4c17-8819-991edc043aa6.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E06000888-04.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "beaded-chain-necklace",
+    "title": "Beaded Chain Necklace",
+    "body_html": "<p>A dainty beaded chain that sits just right at the collarbone. Wear it alone or layered with your favorite pieces.</p>",
+    "product_type": "Jewelry",
+    "options_name": "Color",
+    "variants": [
+      {
+        "option1": "Silver",
+        "price": "8.00",
+        "inventory_quantity": 50
+      },
+      {
+        "option1": "Gold",
+        "price": "8.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/mu399d22w00888_1_1.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/mu399d060ss888_1.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/mu399d060ss888_2.jpg"
+      }
+    ]
+  },
+  {
+    "handle": "double-interlaced-bracelet",
+    "title": "Double Interlaced Bracelet",
+    "body_html": "<p>Two delicate chains interlaced into one easy bracelet. Adjustable clasp for a comfortable everyday fit.</p>",
+    "product_type": "Jewelry",
+    "options_name": "Title",
+    "variants": [
+      {
+        "option1": "One Size",
+        "price": "8.00",
+        "inventory_quantity": 50
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU291D22W00888-01.jpg"
+      },
+      {
+        "src": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU291D22W00888-02.jpg"
+      }
+    ]
+  }
+]
