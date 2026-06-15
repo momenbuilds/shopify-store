@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / tooling
+.claude/
+.vscode/
+.idea/
+
+# Shopify CLI
+.shopify/
+*.log
+node_modules/

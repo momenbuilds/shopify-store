@@ -6,9 +6,9 @@
   {%- for product in collection.products -%}
     <a class="pcard" href="{{ product.url }}">
       <div class="imgwrap">
-        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy">
+        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" width="600" height="800" loading="lazy">
         {%- if product.images[1] -%}
-          <img class="alt" src="{{ product.images[1] | image_url: width: 600 }}" alt="" loading="lazy">
+          <img class="alt" src="{{ product.images[1] | image_url: width: 600 }}" alt="" width="600" height="800" loading="lazy">
         {%- endif -%}
       </div>
       <div class="t">{{ product.title }}</div>
