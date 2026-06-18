@@ -53,28 +53,29 @@ body.menu-open{overflow:hidden}
 .hero-arrow.prev{left:6px}.hero-arrow.next{right:6px}
 
 /* shop this look */
-.stl-title{text-align:center;font-family:var(--serif);letter-spacing:.16em;font-size:15px;color:#666;padding:30px 0 18px;font-weight:400}
-.stl-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 6px 6px}
-.stl-look{position:relative;display:block;overflow:hidden;background:#f4f4f4;border:none;padding:0;cursor:pointer;width:100%}
-.stl-look img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .6s}
-.stl-look:hover img{transform:scale(1.03)}
-.stl-cta{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);color:#fff;font-family:var(--serif);font-size:15px;letter-spacing:.14em;text-shadow:0 1px 10px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none}
+.stl-title{text-align:center;font-family:var(--serif);letter-spacing:.16em;font-size:14px;color:#333;padding:40px 0 20px;font-weight:400;text-transform:uppercase}
+.stl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 4px 4px}
+.stl-look{position:relative;display:block;overflow:hidden;background:#f8f8f8;border:none;padding:0;cursor:pointer;width:100%}
+.stl-look img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .8s ease}
+.stl-look:hover img{transform:scale(1.04)}
+.stl-cta{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:#fff;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-shadow:0 1px 12px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none;text-transform:uppercase;font-weight:500}
 
 /* shop this look modal */
 .look-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center}
 .look-modal[hidden]{display:none}
-.look-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45)}
-.look-dialog{position:relative;background:#fff;width:min(420px,92vw);max-height:90vh;overflow:auto;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.look-x{position:absolute;top:10px;right:10px;z-index:2;background:rgba(255,255,255,.85);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#333;cursor:pointer}
-.look-hero img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
-.look-products{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px}
-.look-card{display:block;text-align:center}
-.look-thumb{position:relative;display:block;overflow:hidden;background:#f5f5f5;aspect-ratio:3/4}
+.look-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.look-dialog{position:relative;background:#fff;width:min(480px,94vw);max-height:92vh;overflow:auto;border-radius:2px;box-shadow:0 24px 80px rgba(0,0,0,.2)}
+.look-x{position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#333;cursor:pointer;font-size:16px}
+.look-hero img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.look-products{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px}
+.look-card{display:block;text-align:center;text-decoration:none;color:inherit}
+.look-thumb{position:relative;display:block;overflow:hidden;background:#f8f8f8;aspect-ratio:3/4}
 .look-thumb img{width:100%;height:100%;object-fit:cover}
-.look-add{position:absolute;right:5px;bottom:5px;width:20px;height:20px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#111;box-shadow:0 1px 4px rgba(0,0,0,.2)}
-.look-name{display:block;font-size:10.5px;color:#333;margin:6px 0 1px;line-height:1.3}
-.look-price{display:block;font-size:10.5px;color:#888}
-@media(max-width:600px){.look-products{gap:6px;padding:12px}.look-name,.look-price{font-size:10px}}
+.look-add{position:absolute;right:8px;bottom:8px;width:22px;height:22px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#111;box-shadow:0 1px 6px rgba(0,0,0,.15);opacity:0;transition:opacity .2s}
+.look-card:hover .look-add{opacity:1}
+.look-name{display:block;font-family:var(--sans);font-size:11px;color:#333;margin:8px 0 2px;line-height:1.4;letter-spacing:.02em}
+.look-price{display:block;font-family:var(--sans);font-size:11px;color:#999;letter-spacing:.02em}
+@media(max-width:600px){.stl-grid{grid-template-columns:1fr}.look-products{gap:12px;padding:16px}}
 
 /* footer */
 .site-footer{text-align:center;color:#888;font-size:11px;letter-spacing:.04em;padding:30px 20px 40px;line-height:1.9}
