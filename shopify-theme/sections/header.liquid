@@ -1,9 +1,9 @@
-<div class="topbar"></div>
-<header class="site-header">
+<header class="site-header" data-header>
   <div class="header-row">
     <div class="header-left">
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Menu" aria-expanded="false">{% render 'icon', name: 'menu', size: 22 %}</button>
       {%- if section.settings.flag_url != blank -%}
-        <img class="flag" src="{{ section.settings.flag_url }}" alt="Region" loading="lazy">
+        <img class="flag" src="{{ section.settings.flag_url }}" alt="Region" width="34" height="22" loading="lazy">
       {%- endif -%}
     </div>
     <a class="wordmark" href="{{ routes.root_url }}">
@@ -11,27 +11,56 @@
     </a>
     <div class="header-right">
       {%- if section.settings.crest_url != blank -%}
-        <img class="crest" src="{{ section.settings.crest_url }}" alt="" loading="lazy">
+        <img class="crest" src="{{ section.settings.crest_url }}" alt="" width="34" height="34" loading="lazy">
       {%- endif -%}
-      <span class="icon">&#9906;</span>
-      <a href="{{ routes.account_login_url }}">SIGN IN</a>
-      <span class="icon">&#9776;</span>
-      <a href="{{ routes.cart_url }}" class="icon">&#128717;</a>
+      <a href="{{ routes.search_url }}" class="hicon" aria-label="Search">{% render 'icon', name: 'search', size: 19 %}</a>
+      <a href="{{ routes.account_login_url }}" class="hicon hide-mobile" aria-label="Account">{% render 'icon', name: 'user', size: 19 %}</a>
+      <a href="{{ routes.cart_url }}" class="hicon cart-link" aria-label="Cart">
+        {% render 'icon', name: 'bag', size: 19 %}
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
     </div>
   </div>
   <nav class="main-nav">
     {%- for link in linklists[section.settings.menu].links -%}
       <a href="{{ link.url }}">{{ link.title }}</a>
     {%- else -%}
-      <a href="{{ routes.all_products_collection_url }}">NEW IN</a>
-      <a href="{{ routes.all_products_collection_url }}">TOPS</a>
-      <a href="{{ routes.all_products_collection_url }}">BOTTOMS</a>
-      <a href="{{ routes.all_products_collection_url }}">DRESSES</a>
-      <a href="{{ routes.all_products_collection_url }}">GRAPHICS</a>
-      <a href="{{ routes.all_products_collection_url }}">ACCESSORIES</a>
+      <a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">NEW IN</a>
+      <a href="{{ collections.tops.url }}">TOPS</a>
+      <a href="{{ collections.bottoms.url }}">BOTTOMS</a>
+      <a href="{{ collections.summer.url }}">SUMMER</a>
+      <a href="{{ routes.all_products_collection_url }}">SHOP ALL</a>
     {%- endfor -%}
   </nav>
 </header>
+
+<div class="mobile-menu" data-mobile-menu hidden>
+  <nav class="mobile-nav">
+    {%- for link in linklists[section.settings.menu].links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- else -%}
+      <a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">NEW IN</a>
+      <a href="{{ collections.tops.url }}">TOPS</a>
+      <a href="{{ collections.bottoms.url }}">BOTTOMS</a>
+      <a href="{{ collections.summer.url }}">SUMMER</a>
+      <a href="{{ routes.all_products_collection_url }}">SHOP ALL</a>
+    {%- endfor -%}
+    <a href="{{ routes.account_login_url }}" class="mm-account">My Account</a>
+  </nav>
+</div>
+
+<script>
+(function(){
+  var btn=document.querySelector('[data-nav-toggle]');
+  var menu=document.querySelector('[data-mobile-menu]');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',function(){
+    var open=menu.hasAttribute('hidden');
+    if(open){menu.removeAttribute('hidden');btn.setAttribute('aria-expanded','true');document.body.classList.add('menu-open');}
+    else{menu.setAttribute('hidden','');btn.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');}
+  });
+})();
+</script>
 
 {% schema %}
 {

@@ -1,0 +1,49 @@
+<div class="chat-widget" data-chat>
+  <button type="button" class="chat-bubble" data-chat-toggle aria-label="Chat with us" aria-expanded="false">
+    <span class="chat-ic-open">{% render 'icon', name: 'chat', size: 26 %}</span>
+    <span class="chat-ic-close">{% render 'icon', name: 'close', size: 22 %}</span>
+  </button>
+
+  <div class="chat-panel" data-chat-panel hidden>
+    <div class="chat-head">
+      <div>
+        <strong>{{ shop.name }}</strong>
+        <span>Ask a question, and we'll be right with you!</span>
+      </div>
+    </div>
+    <div class="chat-body">
+      {%- form 'contact', id: 'chat-contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="chat-success">{% render 'icon', name: 'check', size: 16 %} Thanks! We'll get back to you by email shortly.</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="chat-error">Please check your details and try again.</p>
+        {%- endif -%}
+        <label>Name
+          <input type="text" name="contact[name]" value="{{ form.name }}" autocomplete="name">
+        </label>
+        <label>Email
+          <input type="email" name="contact[email]" value="{{ form.email }}" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="contact[body]" rows="4" required>{{ form.body }}</textarea>
+        </label>
+        <button type="submit" class="chat-send">Start chat</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var t=document.querySelector('[data-chat-toggle]');
+  var p=document.querySelector('[data-chat-panel]');
+  var w=document.querySelector('[data-chat]');
+  if(!t||!p) return;
+  function open(){p.removeAttribute('hidden');w.classList.add('open');t.setAttribute('aria-expanded','true');}
+  function close(){p.setAttribute('hidden','');w.classList.remove('open');t.setAttribute('aria-expanded','false');}
+  t.addEventListener('click',function(){ p.hasAttribute('hidden')?open():close(); });
+  // reopen panel after a successful contact submit (Shopify adds ?contact_posted=true)
+  if(/[?&]contact_posted=true/.test(location.search)) open();
+})();
+</script>

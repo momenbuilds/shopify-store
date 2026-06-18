@@ -3,54 +3,75 @@
 {%- endif -%}
 <div class="stl-grid">
   {%- for block in section.blocks -%}
-    {%- assign tile_product = all_products[block.settings.product_handle] -%}
-    {%- if tile_product != blank -%}
-      {%- assign tile_href = tile_product.url -%}
-      {%- assign tile_alt = block.settings.alt | default: tile_product.title -%}
-    {%- elsif block.settings.link != blank -%}
-      {%- assign tile_href = block.settings.link -%}
-      {%- assign tile_alt = block.settings.alt -%}
-    {%- else -%}
-      {%- assign tile_href = routes.all_products_collection_url -%}
-      {%- assign tile_alt = block.settings.alt -%}
-    {%- endif -%}
-    <a href="{{ tile_href }}" {{ block.shopify_attributes }}>
-      <img src="{{ block.settings.image_url }}" alt="{{ tile_alt | escape }}" loading="lazy">
-    </a>
+    {%- assign look_id = 'look-' | append: block.id -%}
+    <button type="button" class="stl-look" data-look-open="{{ look_id }}" {{ block.shopify_attributes }} aria-label="Shop this look">
+      <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
+      <span class="stl-cta">{{ section.settings.cta | default: 'SHOP THIS LOOK' }}</span>
+    </button>
   {%- endfor -%}
 </div>
+
+{%- comment -%} ---- modals ---- {%- endcomment -%}
+{%- for block in section.blocks -%}
+  {%- assign look_id = 'look-' | append: block.id -%}
+  <div class="look-modal" id="{{ look_id }}" data-look-modal hidden>
+    <div class="look-overlay" data-look-close></div>
+    <div class="look-dialog" role="dialog" aria-modal="true" aria-label="Shop this look">
+      <button type="button" class="look-x" data-look-close aria-label="Close">{% render 'icon', name: 'close', size: 18 %}</button>
+      <div class="look-hero">
+        <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
+      </div>
+      <div class="look-products">
+        {%- assign handles = block.settings.products | split: ',' -%}
+        {%- for h in handles -%}
+          {%- assign hh = h | strip -%}
+          {%- assign prod = all_products[hh] -%}
+          {%- if prod != empty and prod.id -%}
+            <a class="look-card" href="{{ prod.url }}">
+              <span class="look-thumb">
+                <img src="{{ prod.featured_image | image_url: width: 300 }}" alt="{{ prod.title | escape }}" width="300" height="400" loading="lazy">
+                <span class="look-add">{% render 'icon', name: 'plus', size: 14 %}</span>
+              </span>
+              <span class="look-name">{{ prod.title }}</span>
+              <span class="look-price">{{ prod.price | money }}</span>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endfor -%}
+
+<script>
+(function(){
+  function close(){document.querySelectorAll('[data-look-modal]').forEach(function(m){m.setAttribute('hidden','')});document.body.classList.remove('menu-open');}
+  document.querySelectorAll('[data-look-open]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var m=document.getElementById(b.getAttribute('data-look-open'));
+      if(m){m.removeAttribute('hidden');document.body.classList.add('menu-open');}
+    });
+  });
+  document.querySelectorAll('[data-look-close]').forEach(function(x){x.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 
 {% schema %}
 {
   "name": "Shop the look",
   "max_blocks": 12,
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "SHOP THE LOOK" }
+    { "type": "text", "id": "title", "label": "Title", "default": "SHOP THIS LOOK" },
+    { "type": "text", "id": "cta", "label": "Overlay label", "default": "SHOP THIS LOOK" }
   ],
   "blocks": [
     {
       "type": "tile",
-      "name": "Tile",
+      "name": "Look",
       "settings": [
         { "type": "text", "id": "image_url", "label": "Image URL" },
         { "type": "text", "id": "alt", "label": "Alt text" },
-        { "type": "text", "id": "product_handle", "label": "Product handle", "info": "Links to a product in your store. Takes priority over the manual link below." },
-        { "type": "url", "id": "link", "label": "Link (fallback)" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Shop the look",
-      "blocks": [
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MW922-1338S07100UK_02_7d45b958-be8c-43f6-9510-dc136bb7f203.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MH228E-58PS5740000-1.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU781GB6CZ399888-01.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU650B65VT14888-01_88e988b7-1ad7-4bca-baab-3a5862cc27d9.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU65027SSK888-01.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU566E06000888_708f5046-311a-4e1d-86c9-4da52d8ce17d.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/products/mu399d22w00888_1_1.jpg" } },
-        { "type": "tile", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0455/9827/7796/files/MU291D22W00888-01.jpg" } }
+        { "type": "textarea", "id": "products", "label": "Product handles (comma separated, up to 4)" }
       ]
     }
   ]

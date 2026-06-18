@@ -14,7 +14,7 @@
       {%- endif -%}
       <div class="hero-slide" {{ block.shopify_attributes }}>
         {%- if slide_href != blank -%}<a href="{{ slide_href }}">{%- endif -%}
-        <img src="{{ block.settings.image_url }}" alt="{{ slide_alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+        <img src="{{ block.settings.image_url }}" alt="{{ slide_alt | escape }}" width="1600" height="2000" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
         {%- if slide_href != blank -%}</a>{%- endif -%}
       </div>
     {%- endfor -%}

@@ -1,2 +1,2 @@
 <div class="coll-head"><h1>Collections</h1></div>
-<div class="product-grid">{% for collection in collections %}<a class="pcard" href="{{ collection.url }}"><div class="imgwrap"><img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" loading="lazy"></div><div class="t">{{ collection.title }}</div></a>{% endfor %}</div>
+<div class="product-grid">{% for collection in collections %}<a class="pcard" href="{{ collection.url }}"><div class="imgwrap"><img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" width="600" height="800" loading="lazy"></div><div class="t">{{ collection.title }}</div></a>{% endfor %}</div>

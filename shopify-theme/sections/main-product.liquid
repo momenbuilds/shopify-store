@@ -1,8 +1,64 @@
-<nav class="pdp-crumb">
-  <a href="{{ routes.root_url }}">Home</a> /
-  {%- if product.type != blank -%}<a href="{{ routes.all_products_collection_url }}">{{ product.type }}</a> /{%- endif -%}
-  <span>{{ product.title }}</span>
-</nav>
+{%- comment -%} ---- personalization: derive category + short copy from each product ---- {%- endcomment -%}
+{%- assign t = product.title | downcase -%}
+{%- assign cat_label = 'StreetWear Dreams' -%}
+{%- assign cat_line = 'an everyday essential designed to slot effortlessly into your rotation' -%}
+{%- assign cat_fit = 'Relaxed, true-to-size fit.' -%}
+{%- assign cat_features = 'Soft, breathable everyday fabric|Versatile cut that layers with anything|Holds its shape wash after wash' | split: '|' -%}
+{%- assign cat_material = 'Premium mid-weight blend chosen for comfort and durability.' -%}
+{%- if t contains 'jean' or t contains 'denim' -%}
+  {%- assign cat_label = 'Denim' -%}
+  {%- assign cat_line = 'cut for that perfect Y2K silhouette &mdash; a low-rise lean and a leg that moves with you' -%}
+  {%- assign cat_fit = 'True-to-size, low-rise sit with a little stretch. Size down for snug.' -%}
+  {%- assign cat_features = 'Low-rise, body-skimming fit|Just-right stretch that moves with you|Classic five-pocket styling' | split: '|' -%}
+  {%- assign cat_material = 'Comfort-stretch denim with a vintage-inspired wash.' -%}
+{%- elsif t contains 'jort' -%}
+  {%- assign cat_label = 'Denim' -%}
+  {%- assign cat_line = 'the denim-short hybrid you reach for all summer &mdash; relaxed through the leg with a broken-in feel' -%}
+  {%- assign cat_fit = 'Relaxed, mid-length fit. True to size; size up for oversized.' -%}
+  {%- assign cat_features = 'Relaxed mid-length leg|Broken-in, vintage denim feel|Raw-edge hem detailing' | split: '|' -%}
+  {%- assign cat_material = 'Heavyweight non-stretch denim built to last.' -%}
+{%- elsif t contains 'short' -%}
+  {%- assign cat_label = 'Shorts' -%}
+  {%- assign cat_line = 'a low-rise, lace-trim moment made for warm days and going-out nights' -%}
+  {%- assign cat_fit = 'Low-rise, cheeky cut. True to size; size up for more coverage.' -%}
+  {%- assign cat_features = 'Low-rise, cheeky cut|Delicate lace-trim detailing|Lightweight and breathable' | split: '|' -%}
+  {%- assign cat_material = 'Soft brushed fabric finished with lace trim.' -%}
+{%- elsif t contains 'pant' or t contains 'trouser' or t contains 'legging' -%}
+  {%- assign cat_label = 'Bottoms' -%}
+  {%- assign cat_line = 'an easy drape that dresses up or down without a second thought' -%}
+  {%- assign cat_fit = 'Relaxed through the hip and leg. True to size for a flowy fit.' -%}
+  {%- assign cat_features = 'Easy wide-leg drape|High, comfortable waist|Flowy, breathable feel' | split: '|' -%}
+  {%- assign cat_material = 'Lightweight woven fabric with beautiful movement.' -%}
+{%- elsif t contains 'tank' or t contains 'cami' or t contains 'vest' -%}
+  {%- assign cat_label = 'Tops' -%}
+  {%- assign cat_line = 'a fitted, second-skin layer that works solo or under everything' -%}
+  {%- assign cat_fit = 'Slim, cropped fit. Stretches to hug; size up for looser.' -%}
+  {%- assign cat_features = 'Fitted, second-skin silhouette|Smooth stretch ribbing|Layer solo or under anything' | split: '|' -%}
+  {%- assign cat_material = 'Stretch rib-knit with a soft hand-feel.' -%}
+{%- elsif t contains 'top' or t contains 'tee' or t contains 'shirt' or t contains 'crop' or t contains 'milkmaid' -%}
+  {%- assign cat_label = 'Tops' -%}
+  {%- assign cat_line = 'a slim, cropped staple with the kind of detail that makes the whole fit' -%}
+  {%- assign cat_fit = 'Cropped, true-to-size fit. Size up for extra length.' -%}
+  {%- assign cat_features = 'Cropped, flattering length|Soft, breathable cotton-feel|Statement detailing' | split: '|' -%}
+  {%- assign cat_material = 'Soft cotton-blend jersey.' -%}
+{%- elsif t contains 'necklace' or t contains 'pendant' or t contains 'charm' -%}
+  {%- assign cat_label = 'Jewelry' -%}
+  {%- assign cat_line = 'a delicate gold-tone piece that finishes any neckline' -%}
+  {%- assign cat_fit = 'One size. Adjustable, tarnish-resistant chain.' -%}
+  {%- assign cat_features = '18K gold-plated finish|Tarnish-resistant stainless steel|Adjustable, comfortable chain' | split: '|' -%}
+  {%- assign cat_material = '18K gold-plated stainless steel. Hypoallergenic and water-resistant.' -%}
+{%- elsif t contains 'clip' or t contains 'claw' -%}
+  {%- assign cat_label = 'Accessories' -%}
+  {%- assign cat_line = 'the grip-it-and-go claw that holds thick hair all day' -%}
+  {%- assign cat_fit = 'One size. Strong-hold grip for thick and fine hair.' -%}
+  {%- assign cat_features = 'Strong, all-day hold|Suits thick and fine hair|Lightweight, comfortable grip' | split: '|' -%}
+  {%- assign cat_material = 'Durable acetate-style resin.' -%}
+{%- endif -%}
+{%- assign size_opt = blank -%}
+{%- for option in product.options_with_values -%}
+  {%- assign on = option.name | downcase -%}
+  {%- if on contains 'size' -%}{%- assign size_opt = option -%}{%- endif -%}
+{%- endfor -%}
 
 <div class="pdp">
   <!-- GALLERY -->
@@ -27,7 +83,7 @@
       {%- endif -%}
     </div>
     {%- if product.images.size > 1 -%}
-      <div class="pdp-thumbs">
+      <div class="pdp-thumbs" role="list">
         {%- for image in product.images -%}
           <button type="button" class="pdp-thumb{% if forloop.first %} sel{% endif %}"
                   data-full="{{ image | image_url: width: 1200 }}" aria-label="View image {{ forloop.index }}">
@@ -40,21 +96,17 @@
 
   <!-- INFO -->
   <div class="pdp-info">
-    <p class="pdp-eyebrow">{{ product.vendor | default: product.type }}</p>
+    <p class="pdp-eyebrow">{{ cat_label }}</p>
     <h1>{{ product.title }}</h1>
 
     <div class="pdp-rating">
-      <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="stars" aria-hidden="true">{% render 'icon', name: 'star', size: 14 %}{% render 'icon', name: 'star', size: 14 %}{% render 'icon', name: 'star', size: 14 %}{% render 'icon', name: 'star', size: 14 %}{% render 'icon', name: 'star', size: 14 %}</span>
       <span class="rating-text">4.8 &middot; 200+ reviews</span>
     </div>
 
     <p class="pdp-price">{{ product.price | money }}{% if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif %}</p>
 
-    {%- if product.metafields.custom.tagline -%}
-      <p class="pdp-tagline">{{ product.metafields.custom.tagline }}</p>
-    {%- endif -%}
-
-    {%- form 'product', product, id: 'product-form' -%}
+    {%- form 'product', product, id: 'product-form', class: 'pdp-form' -%}
       {%- unless product.has_only_default_variant -%}
         {%- for option in product.options_with_values -%}
           <div class="opt">
@@ -87,72 +139,39 @@
       </select>
 
       <button type="submit" name="add" class="addbtn"{% unless product.available %} disabled{% endunless %}>
-        {%- if product.available -%}Add To Bag &middot; {{ product.price | money }}{%- else -%}Sold Out{%- endif -%}
+        {%- if product.available -%}Add To Cart{%- else -%}Sold Out{%- endif -%}
       </button>
+      {%- if product.available -%}{{ form | payment_button }}{%- endif -%}
     {%- endform -%}
 
-    <ul class="pdp-trust">
-      <li>&#128666; Free U.S. shipping over $75</li>
-      <li>&#8634; 30-day easy returns</li>
-      <li>&#128274; Secure checkout</li>
-    </ul>
-
-    {%- if product.description != blank -%}
-      <details class="pdp-acc" open>
-        <summary>Description</summary>
-        <div class="pdp-desc">{{ product.description }}</div>
-      </details>
-    {%- endif -%}
-    <details class="pdp-acc">
-      <summary>Details &amp; Care</summary>
-      <div class="pdp-desc">
-        <ul>
-          <li>Designed in California, crafted for everyday wear</li>
-          <li>Machine wash cold, lay flat to dry</li>
-          <li>Do not bleach or tumble dry</li>
-        </ul>
-      </div>
-    </details>
-    <details class="pdp-acc">
-      <summary>Shipping &amp; Returns</summary>
-      <div class="pdp-desc">Free shipping on U.S. orders over $75. Most orders ship within 1&ndash;2 business days. Enjoy 30 days to return unworn items with tags for a full refund.</div>
-    </details>
-    <details class="pdp-acc">
-      <summary>Size &amp; Fit</summary>
-      <div class="pdp-desc">Relaxed, true-to-size fit. Most styles come in one size or XS/S and S/M. Between sizes? Size down for a fitted look, up for relaxed.</div>
-    </details>
+    <div class="pdp-shortdesc">
+      <p>The <strong>{{ product.title }}</strong> &mdash; {{ cat_line }}.</p>
+      <ul>
+        {%- for f in cat_features -%}<li>{{ f }}</li>{%- endfor -%}
+      </ul>
+      <p class="pdp-spec"><strong>Fabric:</strong> {{ cat_material }}</p>
+      <p class="pdp-spec"><strong>Fit:</strong> {{ cat_fit }}{% if size_opt != blank %} Sizes {{ size_opt.values | join: ', ' }}.{% endif %}</p>
+      <p class="pdp-spec"><strong>Shipping:</strong> Free U.S. shipping over $75 &middot; 30-day returns.</p>
+    </div>
   </div>
 </div>
 
-<!-- HIGHLIGHTS -->
-<section class="pdp-highlights">
-  <div class="hl"><span class="hl-ic">&#10024;</span><h4>Soft Premium Feel</h4><p>Chosen fabrics and finishes that feel good from the first wear.</p></div>
-  <div class="hl"><span class="hl-ic">&#127881;</span><h4>Everyday Versatile</h4><p>Mixes effortlessly with the rest of your wardrobe, day or night.</p></div>
-  <div class="hl"><span class="hl-ic">&#9829;</span><h4>Loved By Thousands</h4><p>A repeat favorite with a 4.8-star average across reviews.</p></div>
-  <div class="hl"><span class="hl-ic">&#9851;</span><h4>Made To Last</h4><p>Quality construction that holds its shape wash after wash.</p></div>
-</section>
-
-<!-- REVIEWS -->
-<section class="pdp-reviews">
-  <h2 class="stl-title">WHAT CUSTOMERS SAY</h2>
-  <div class="review-grid">
-    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Exactly what I hoped for &mdash; the fit is perfect and it feels so soft. Already wearing it on repeat.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
-    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Great quality for the price. Shipping was quick and it looks just like the photos.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
-    <blockquote><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><p>&ldquo;Got so many compliments. Goes with everything in my closet. Will be buying more colors.&rdquo;</p><cite>&mdash; Verified Buyer</cite></blockquote>
-  </div>
-</section>
-
-<!-- RELATED -->
+<!-- YOU MAY ALSO LIKE (carousel of 6) -->
+{%- assign rel = collections.all -%}
+{%- for c in product.collections -%}
+  {%- if c.handle != 'all' and c.handle != 'frontpage' and c.products_count > 1 -%}
+    {%- assign rel = c -%}{%- break -%}
+  {%- endif -%}
+{%- endfor -%}
 {%- assign rec_count = 0 -%}
 <section class="pdp-rec-wrap">
   <h2 class="stl-title">YOU MAY ALSO LIKE</h2>
-  <div class="product-grid">
-    {%- for p in collections.all.products -%}
-      {%- if p.id != product.id and p.type == product.type and rec_count < 4 -%}
-        <a class="pcard" href="{{ p.url }}">
+  <div class="rec-carousel">
+    {%- for p in rel.products -%}
+      {%- if p.id != product.id and rec_count < 6 -%}
+        <a class="rec-card" href="{{ p.url }}">
           <div class="imgwrap">
-            <img src="{{ p.featured_image | image_url: width: 600 }}" width="600" height="800" alt="{{ p.title | escape }}" loading="lazy">
-            {%- if p.images[1] %}<img class="alt" src="{{ p.images[1] | image_url: width: 600 }}" width="600" height="800" alt="" loading="lazy">{% endif -%}
+            <img src="{{ p.featured_image | image_url: width: 500 }}" width="500" height="666" alt="{{ p.title | escape }}" loading="lazy">
           </div>
           <div class="t">{{ p.title }}</div>
           <div class="p">{{ p.price | money }}</div>
@@ -160,17 +179,6 @@
         {%- assign rec_count = rec_count | plus: 1 -%}
       {%- endif -%}
     {%- endfor -%}
-    {%- if rec_count == 0 -%}
-      {%- for p in collections.all.products limit: 4 -%}
-        {%- unless p.id == product.id -%}
-        <a class="pcard" href="{{ p.url }}">
-          <div class="imgwrap"><img src="{{ p.featured_image | image_url: width: 600 }}" width="600" height="800" alt="{{ p.title | escape }}" loading="lazy"></div>
-          <div class="t">{{ p.title }}</div>
-          <div class="p">{{ p.price | money }}</div>
-        </a>
-        {%- endunless -%}
-      {%- endfor -%}
-    {%- endif -%}
   </div>
 </section>
 

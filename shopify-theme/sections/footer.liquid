@@ -1,13 +1,43 @@
 <footer class="site-footer">
-  {{ section.settings.line1 }}<br>
-  &copy; {{ 'now' | date: '%Y' }}, {{ shop.name }}
+  {%- assign nm = shop.name | split: ' ' -%}
+  <div class="footer-top">
+    <div class="footer-brand">
+      <p class="fmark">{{ nm | first }}<span class="heart">&#10084;</span>{{ nm | last | default: '' }}</p>
+      <p>{{ section.settings.blurb }}</p>
+      <ul class="footer-perks">
+        <li>{% render 'icon', name: 'truck', size: 17 %} Free U.S. shipping over $75</li>
+        <li>{% render 'icon', name: 'return', size: 17 %} 30-day easy returns</li>
+        <li>{% render 'icon', name: 'shield', size: 17 %} Secure checkout</li>
+      </ul>
+    </div>
+    <nav class="footer-col" aria-label="Shop">
+      <h5>Shop</h5>
+      <a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">New In</a>
+      <a href="{{ collections.tops.url }}">Tops</a>
+      <a href="{{ collections.bottoms.url }}">Bottoms</a>
+      <a href="{{ collections.summer.url }}">Summer</a>
+      <a href="{{ routes.all_products_collection_url }}">Shop All</a>
+    </nav>
+    <nav class="footer-col" aria-label="Help">
+      <h5>Help</h5>
+      <a href="{{ routes.search_url }}">Search</a>
+      <a href="{{ routes.account_url }}">My Account</a>
+      <a href="{{ routes.cart_url }}">Cart</a>
+      <a href="{{ routes.all_products_collection_url }}">Shipping &amp; Returns</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }}, {{ shop.name }}</span>
+    <span>{{ section.settings.line1 }}</span>
+  </div>
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
   "settings": [
-    { "type": "text", "id": "line1", "label": "Top line", "default": "For CA Residents | Site Accessibility" }
+    { "type": "text", "id": "blurb", "label": "Brand blurb", "default": "Y2K-inspired streetwear made to slot straight into your everyday rotation. New drops, easy fits, and pieces you'll wear on repeat." },
+    { "type": "text", "id": "line1", "label": "Bottom line", "default": "For CA Residents · Site Accessibility" }
   ]
 }
 {% endschema %}
