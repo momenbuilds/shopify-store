@@ -1,4 +1,4 @@
-/* Brandy Melville style clone — minimalist storefront */
+/* StreetWear Dreams — minimalist storefront */
 :root{
   --fg:#222;--muted:#777;--line:#e7e7e7;--bg:#fff;--accent:#000;
   --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -61,9 +61,17 @@ button{font-family:inherit;cursor:pointer}
 /* Product page */
 .pdp{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;padding:30px 30px 70px;max-width:1300px;margin:0 auto}
 @media(max-width:880px){.pdp{grid-template-columns:1fr}}
+.pdp-carousel{display:none}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:4px}
 .gallery img{width:100%;background:#f5f5f5;aspect-ratio:3/4;object-fit:cover}
 .gallery img:first-child{grid-column:1/-1;aspect-ratio:auto}
+@media(max-width:880px){
+  .gallery-desktop{display:none}
+  .pdp-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;background:#fff}
+  .pdp-carousel::-webkit-scrollbar{display:none}
+  .pdp-carousel-slide{flex:0 0 88%;scroll-snap-align:start}
+  .pdp-carousel-slide img{width:100%;height:min(58vh,520px);object-fit:cover;display:block;background:#f5f5f5}
+}
 .pdp-info{position:sticky;top:90px;align-self:start}
 .pdp-info h1{font-weight:400;font-size:22px;letter-spacing:.04em;margin:0 0 6px;text-transform:uppercase}
 .pdp-price{font-size:16px;margin:0 0 22px;color:#333}

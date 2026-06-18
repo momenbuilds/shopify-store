@@ -3,8 +3,19 @@
 {%- endif -%}
 <div class="stl-grid">
   {%- for block in section.blocks -%}
-    <a href="{{ block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
-      <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" loading="lazy">
+    {%- assign tile_product = all_products[block.settings.product_handle] -%}
+    {%- if tile_product != blank -%}
+      {%- assign tile_href = tile_product.url -%}
+      {%- assign tile_alt = block.settings.alt | default: tile_product.title -%}
+    {%- elsif block.settings.link != blank -%}
+      {%- assign tile_href = block.settings.link -%}
+      {%- assign tile_alt = block.settings.alt -%}
+    {%- else -%}
+      {%- assign tile_href = routes.all_products_collection_url -%}
+      {%- assign tile_alt = block.settings.alt -%}
+    {%- endif -%}
+    <a href="{{ tile_href }}" {{ block.shopify_attributes }}>
+      <img src="{{ block.settings.image_url }}" alt="{{ tile_alt | escape }}" loading="lazy">
     </a>
   {%- endfor -%}
 </div>
@@ -23,7 +34,8 @@
       "settings": [
         { "type": "text", "id": "image_url", "label": "Image URL" },
         { "type": "text", "id": "alt", "label": "Alt text" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "text", "id": "product_handle", "label": "Product handle", "info": "Links to a product in your store. Takes priority over the manual link below." },
+        { "type": "url", "id": "link", "label": "Link (fallback)" }
       ]
     }
   ],

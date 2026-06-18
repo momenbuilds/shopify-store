@@ -7,6 +7,17 @@
 <div class="pdp">
   <!-- GALLERY -->
   <div class="pdp-gallery" data-gallery>
+    {%- if product.images.size > 0 -%}
+      <div class="pdp-carousel" aria-label="Product images">
+        {%- for image in product.images -%}
+          <div class="pdp-carousel-slide">
+            <img src="{{ image | image_url: width: 1200 }}"
+                 alt="{{ image.alt | escape | default: product.title }}" width="1200" height="1600"
+                 {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
     <div class="pdp-stage">
       {%- if product.featured_image -%}
         <img id="pdp-main-image" src="{{ product.featured_image | image_url: width: 1200 }}"

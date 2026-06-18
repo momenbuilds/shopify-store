@@ -23,12 +23,11 @@
     {%- for link in linklists[section.settings.menu].links -%}
       <a href="{{ link.url }}">{{ link.title }}</a>
     {%- else -%}
-      <a href="{{ routes.all_products_collection_url }}">JUST IN</a>
-      <a href="{{ routes.all_products_collection_url }}">INTIMATES &amp; PAJAMAS</a>
+      <a href="{{ routes.all_products_collection_url }}">NEW IN</a>
+      <a href="{{ routes.all_products_collection_url }}">TOPS</a>
+      <a href="{{ routes.all_products_collection_url }}">BOTTOMS</a>
+      <a href="{{ routes.all_products_collection_url }}">DRESSES</a>
       <a href="{{ routes.all_products_collection_url }}">GRAPHICS</a>
-      <a href="{{ routes.all_products_collection_url }}">CLOTHING</a>
-      <a href="{{ routes.all_products_collection_url }}">NEW COLORS</a>
-      <a href="{{ routes.all_products_collection_url }}">PATTERNS</a>
       <a href="{{ routes.all_products_collection_url }}">ACCESSORIES</a>
     {%- endfor -%}
   </nav>
@@ -38,8 +37,8 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "brand_left", "label": "Brand name (left of heart)", "default": "Brandy" },
-    { "type": "text", "id": "brand_right", "label": "Brand name (right of heart)", "default": "Melville" },
+    { "type": "text", "id": "brand_left", "label": "Brand name (left of heart)", "default": "StreetWear" },
+    { "type": "text", "id": "brand_right", "label": "Brand name (right of heart)", "default": "Dreams" },
     { "type": "link_list", "id": "menu", "label": "Navigation menu" },
     { "type": "text", "id": "flag_url", "label": "Flag image URL", "default": "https://flagcdn.com/w40/us.png" },
     { "type": "text", "id": "crest_url", "label": "Crest image URL" }

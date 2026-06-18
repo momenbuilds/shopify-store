@@ -1,10 +1,21 @@
 <div class="hero" data-hero>
   <div class="hero-track">
     {%- for block in section.blocks -%}
+      {%- assign slide_product = all_products[block.settings.product_handle] -%}
+      {%- if slide_product != blank -%}
+        {%- assign slide_href = slide_product.url -%}
+        {%- assign slide_alt = block.settings.alt | default: slide_product.title -%}
+      {%- elsif block.settings.link != blank -%}
+        {%- assign slide_href = block.settings.link -%}
+        {%- assign slide_alt = block.settings.alt -%}
+      {%- else -%}
+        {%- assign slide_href = '' -%}
+        {%- assign slide_alt = block.settings.alt -%}
+      {%- endif -%}
       <div class="hero-slide" {{ block.shopify_attributes }}>
-        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
-        <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-        {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        {%- if slide_href != blank -%}<a href="{{ slide_href }}">{%- endif -%}
+        <img src="{{ block.settings.image_url }}" alt="{{ slide_alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+        {%- if slide_href != blank -%}</a>{%- endif -%}
       </div>
     {%- endfor -%}
   </div>
@@ -37,7 +48,8 @@
       "settings": [
         { "type": "text", "id": "image_url", "label": "Image URL" },
         { "type": "text", "id": "alt", "label": "Alt text" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "text", "id": "product_handle", "label": "Product handle", "info": "Links to a product in your store. Takes priority over the manual link below." },
+        { "type": "url", "id": "link", "label": "Link (fallback)" }
       ]
     }
   ],

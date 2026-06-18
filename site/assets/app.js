@@ -1,4 +1,4 @@
-// Brandy Melville style clone — catalog driven storefront
+// StreetWear Dreams — catalog driven storefront
 let CATALOG = [];
 
 async function loadCatalog(){
@@ -104,14 +104,20 @@ async function initProduct(){
   const cat = await loadCatalog();
   const handle = qs.get('handle');
   const p = cat.find(x=>x.handle===handle) || cat[0];
-  document.title = p.title + ' — Brandy';
+  document.title = p.title + ' — StreetWear Dreams';
   document.getElementById('pdp-title').textContent = p.title;
   document.getElementById('pdp-price').textContent = money(p.price);
   document.getElementById('pdp-desc').innerHTML = p.body || '';
   document.getElementById('crumb-type').textContent = p.type || 'Shop';
 
+  const imgs = p.images.length ? p.images : [''];
   const gal = document.getElementById('pdp-gallery');
-  gal.innerHTML = (p.images.length?p.images:['']).map(src=>`<img loading="lazy" src="${src}" alt="${escapeHtml(p.title)}">`).join('');
+  gal.innerHTML = imgs.map(src=>`<img loading="lazy" src="${src}" alt="${escapeHtml(p.title)}">`).join('');
+
+  const carousel = document.getElementById('pdp-carousel');
+  if(carousel){
+    carousel.innerHTML = imgs.map((src,i)=>`<div class="pdp-carousel-slide"><img ${i===0?'':'loading="lazy" '}src="${src}" alt="${escapeHtml(p.title)}"></div>`).join('');
+  }
 
   // colors + sizes parsed from variant titles "Color / Size"
   const colors = new Set(), sizes = [];

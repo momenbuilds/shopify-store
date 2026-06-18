@@ -3,7 +3,16 @@
     "color_bg": "#ffffff",
     "color_text": "#222222",
     "color_accent": "#f6a5b8",
-    "heading_font": "serif"
+    "heading_font": "serif",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "brand_left": "StreetWear",
+          "brand_right": "Dreams"
+        }
+      }
+    }
   },
   "presets": {
     "Default": {}
