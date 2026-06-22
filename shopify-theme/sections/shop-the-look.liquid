@@ -17,9 +17,10 @@
   <div class="look-modal" id="{{ look_id }}" data-look-modal hidden>
     <div class="look-overlay" data-look-close></div>
     <div class="look-dialog" role="dialog" aria-modal="true" aria-label="Shop this look">
-      <button type="button" class="look-x" data-look-close aria-label="Close">{% render 'icon', name: 'close', size: 18 %}</button>
-      <div class="look-hero">
-        <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
+      <div class="look-modal-head">
+        <img class="look-hero-thumb" src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="56" height="56" loading="lazy">
+        <span class="look-modal-label">SHOP THIS LOOK</span>
+        <button type="button" class="look-x" data-look-close aria-label="Close">{% render 'icon', name: 'close', size: 18 %}</button>
       </div>
       <div class="look-products">
         {%- assign handles = block.settings.products | split: ',' -%}

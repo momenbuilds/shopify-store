@@ -60,16 +60,21 @@ body.menu-open{overflow:hidden}
 .stl-look:hover img{transform:scale(1.04)}
 .stl-cta{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:#fff;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-shadow:0 1px 12px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none;text-transform:uppercase;font-weight:500}
 
+/* hide Shopify's built-in cookie consent banner */
+#shopify-privacy-banner,#shopify-pc__banner,.shopify-pc__banner{display:none!important}
+
 /* shop this look modal */
 .look-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center}
 .look-modal[hidden]{display:none}
 .look-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4)}
 .look-dialog{position:relative;background:#fff;width:min(480px,94vw);max-height:92vh;overflow:auto;border-radius:2px;box-shadow:0 24px 80px rgba(0,0,0,.2)}
-.look-x{position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#333;cursor:pointer;font-size:16px}
-.look-hero img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.look-modal-head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #f0f0f0}
+.look-hero-thumb{width:56px;height:56px;object-fit:cover;border-radius:3px;flex:none}
+.look-modal-label{flex:1;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#333}
+.look-x{background:none;border:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#333;cursor:pointer;font-size:16px;flex:none;padding:0}
 .look-products{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px}
 .look-card{display:block;text-align:center;text-decoration:none;color:inherit}
-.look-thumb{position:relative;display:block;overflow:hidden;background:#f8f8f8;aspect-ratio:3/4}
+.look-thumb{position:relative;display:block;overflow:hidden;background:#f8f8f8;aspect-ratio:1/1}
 .look-thumb img{width:100%;height:100%;object-fit:cover}
 .look-add{position:absolute;right:8px;bottom:8px;width:22px;height:22px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#111;box-shadow:0 1px 6px rgba(0,0,0,.15);opacity:0;transition:opacity .2s}
 .look-card:hover .look-add{opacity:1}
