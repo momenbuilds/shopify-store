@@ -144,6 +144,42 @@
       {%- if product.available -%}{{ form | payment_button }}{%- endif -%}
     {%- endform -%}
 
+    {%- comment -%} UPSELL — Complete the Look {%- endcomment -%}
+    {%- assign upsell_col = collections.all -%}
+    {%- for c in product.collections -%}
+      {%- if c.handle != 'all' and c.handle != 'frontpage' and c.products_count > 1 -%}
+        {%- assign upsell_col = c -%}{%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign upsell_count = 0 -%}
+    {%- assign has_upsells = false -%}
+    {%- for up in upsell_col.products -%}
+      {%- if up.id != product.id and upsell_count < 3 -%}
+        {%- assign has_upsells = true -%}
+        {%- assign upsell_count = upsell_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if has_upsells -%}
+    <div class="upsell-wrap">
+      <p class="upsell-heading">COMPLETE THE LOOK</p>
+      <div class="upsell-items">
+        {%- assign upsell_count = 0 -%}
+        {%- for up in upsell_col.products -%}
+          {%- if up.id != product.id and upsell_count < 3 -%}
+            <a class="upsell-card" href="{{ up.url }}">
+              <div class="upsell-img">
+                <img src="{{ up.featured_image | image_url: width: 200 }}" alt="{{ up.title | escape }}" width="200" height="266" loading="lazy">
+              </div>
+              <div class="upsell-name">{{ up.title | truncate: 34 }}</div>
+              <div class="upsell-price">{{ up.price | money }}</div>
+            </a>
+            {%- assign upsell_count = upsell_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+
     <div class="pdp-shortdesc">
       <p>The <strong>{{ product.title }}</strong> &mdash; {{ cat_line }}.</p>
       <ul>

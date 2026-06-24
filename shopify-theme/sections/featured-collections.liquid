@@ -1,0 +1,62 @@
+{%- if section.settings.title != blank -%}
+  <h2 class="fc-title">{{ section.settings.title }}</h2>
+{%- endif -%}
+
+<div class="fc-grid">
+  {%- for block in section.blocks -%}
+    {%- assign coll_handle = block.settings.collection -%}
+    {%- assign coll = collections[coll_handle] -%}
+    <a class="fc-tile"
+       href="{% if coll != blank %}{{ coll.url }}{% elsif block.settings.link != blank %}{{ block.settings.link }}{% else %}/collections/all{% endif %}"
+       {{ block.shopify_attributes }}>
+      <div class="fc-imgwrap">
+        {%- if block.settings.image_url != blank -%}
+          <img src="{{ block.settings.image_url }}" alt="{{ block.settings.label | escape }}" width="700" height="875" loading="lazy">
+        {%- elsif coll != blank and coll.featured_image -%}
+          <img src="{{ coll.featured_image | image_url: width: 700 }}" alt="{{ coll.title | escape }}" width="700" height="875" loading="lazy">
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {%- endif -%}
+        <div class="fc-overlay">
+          <span class="fc-label">{{ block.settings.label | default: coll.title }}</span>
+          <span class="fc-count">
+            {%- if coll != blank -%}{{ coll.products_count }} items{%- endif -%}
+          </span>
+        </div>
+      </div>
+    </a>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Section heading", "default": "SHOP BY CATEGORY" }
+  ],
+  "blocks": [
+    {
+      "type": "collection_tile",
+      "name": "Collection tile",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "label", "label": "Label (overrides collection name)" },
+        { "type": "text", "id": "image_url", "label": "Image URL (overrides collection image)" },
+        { "type": "url", "id": "link", "label": "Link (fallback if no collection chosen)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections",
+      "blocks": [
+        { "type": "collection_tile", "settings": { "label": "Tops", "link": "/collections/tops" } },
+        { "type": "collection_tile", "settings": { "label": "Bottoms", "link": "/collections/bottoms" } },
+        { "type": "collection_tile", "settings": { "label": "Denim", "link": "/collections/denim" } },
+        { "type": "collection_tile", "settings": { "label": "Accessories", "link": "/collections/accessories" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -27,6 +27,47 @@
       },
       "block_order": ["s1", "s2", "s3"]
     },
+    "collections": {
+      "type": "featured-collections",
+      "settings": {
+        "title": "SHOP BY CATEGORY"
+      },
+      "blocks": {
+        "c1": {
+          "type": "collection_tile",
+          "settings": {
+            "label": "Tops",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/ChatGPT_Image_Jun_13_2026_07_51_24_PM_986ee17b-454f-4194-9f8b-d66730d1d9da.png?v=1781394839",
+            "link": "/collections/tops"
+          }
+        },
+        "c2": {
+          "type": "collection_tile",
+          "settings": {
+            "label": "Bottoms",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/ChatGPT_Image_Jun_13_2026_07_43_56_PM.png?v=1781394265",
+            "link": "/collections/bottoms"
+          }
+        },
+        "c3": {
+          "type": "collection_tile",
+          "settings": {
+            "label": "Denim",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/IMG_6960.png?v=1748192966",
+            "link": "/collections/denim"
+          }
+        },
+        "c4": {
+          "type": "collection_tile",
+          "settings": {
+            "label": "Accessories",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/ChatGPT_Image_Jun_13_2026_08_07_11_PM.png?v=1781395646",
+            "link": "/collections/accessories"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
     "stl": {
       "type": "shop-the-look",
       "settings": {
@@ -70,5 +111,5 @@
       "block_order": ["t1", "t2", "t3", "t4"]
     }
   },
-  "order": ["hero", "stl"]
+  "order": ["hero", "collections", "stl"]
 }
