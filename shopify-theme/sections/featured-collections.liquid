@@ -5,6 +5,9 @@
 <div class="fc-grid">
   {%- for block in section.blocks -%}
     {%- assign coll_handle = block.settings.collection -%}
+    {%- if coll_handle == blank and block.settings.link contains '/collections/' -%}
+      {%- assign coll_handle = block.settings.link | split: '/collections/' | last | split: '?' | first -%}
+    {%- endif -%}
     {%- assign coll = collections[coll_handle] -%}
     <a class="fc-tile"
        href="{% if coll != blank %}{{ coll.url }}{% elsif block.settings.link != blank %}{{ block.settings.link }}{% else %}/collections/all{% endif %}"
@@ -14,6 +17,8 @@
           <img src="{{ block.settings.image_url }}" alt="{{ block.settings.label | escape }}" width="700" height="875" loading="lazy">
         {%- elsif coll != blank and coll.featured_image -%}
           <img src="{{ coll.featured_image | image_url: width: 700 }}" alt="{{ coll.title | escape }}" width="700" height="875" loading="lazy">
+        {%- elsif coll != blank and coll.products.first.featured_image -%}
+          <img src="{{ coll.products.first.featured_image | image_url: width: 700 }}" alt="{{ coll.title | escape }}" width="700" height="875" loading="lazy">
         {%- else -%}
           {{ 'collection-1' | placeholder_svg_tag }}
         {%- endif -%}

@@ -1,7 +1,11 @@
 <div class="hero" data-hero>
   <div class="hero-track">
     {%- for block in section.blocks -%}
-      {%- assign slide_product = all_products[block.settings.product_handle] -%}
+      {%- assign slide_handle = block.settings.product_handle -%}
+      {%- if slide_handle == blank and block.settings.link contains '/products/' -%}
+        {%- assign slide_handle = block.settings.link | split: '/products/' | last | split: '?' | first -%}
+      {%- endif -%}
+      {%- assign slide_product = all_products[slide_handle] -%}
       {%- if slide_product != blank -%}
         {%- assign slide_href = slide_product.url -%}
         {%- assign slide_label = block.settings.cta_label | default: slide_product.title -%}
@@ -15,10 +19,18 @@
         {%- assign slide_label = '' -%}
         {%- assign slide_alt = block.settings.alt -%}
       {%- endif -%}
+      {%- comment -%} Image: a manual URL wins, otherwise pull the linked product's image. {%- endcomment -%}
+      {%- if block.settings.image_url != blank -%}
+        {%- assign slide_img_src = block.settings.image_url -%}
+      {%- elsif slide_product != blank and slide_product.featured_image -%}
+        {%- assign slide_img_src = slide_product.featured_image | image_url: width: 1600 -%}
+      {%- else -%}
+        {%- assign slide_img_src = '' -%}
+      {%- endif -%}
       <div class="hero-slide" {{ block.shopify_attributes }}>
         {%- if slide_href != blank -%}
           <a class="hero-slide-link" href="{{ slide_href }}" aria-label="{{ slide_label | escape }}">
-            <img src="{{ block.settings.image_url }}" alt="{{ slide_alt | escape }}" width="1600" height="2000"
+            <img src="{{ slide_img_src }}" alt="{{ slide_alt | escape }}" width="1600" height="2000"
                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
             <div class="hero-cta-wrap">
               {%- if block.settings.heading != blank -%}
@@ -28,7 +40,7 @@
             </div>
           </a>
         {%- else -%}
-          <img src="{{ block.settings.image_url }}" alt="{{ slide_alt | escape }}" width="1600" height="2000"
+          <img src="{{ slide_img_src }}" alt="{{ slide_alt | escape }}" width="1600" height="2000"
                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
         {%- endif -%}
       </div>

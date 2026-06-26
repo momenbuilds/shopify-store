@@ -4,8 +4,18 @@
 <div class="stl-grid">
   {%- for block in section.blocks -%}
     {%- assign look_id = 'look-' | append: block.id -%}
+    {%- comment -%} Look photo: manual URL wins, otherwise the first product's image. {%- endcomment -%}
+    {%- assign first_handle = block.settings.products | split: ',' | first | strip -%}
+    {%- assign first_prod = all_products[first_handle] -%}
+    {%- if block.settings.image_url != blank -%}
+      {%- assign look_img_src = block.settings.image_url -%}
+    {%- elsif first_prod != blank and first_prod.featured_image -%}
+      {%- assign look_img_src = first_prod.featured_image | image_url: width: 700 -%}
+    {%- else -%}
+      {%- assign look_img_src = '' -%}
+    {%- endif -%}
     <button type="button" class="stl-look" data-look-open="{{ look_id }}" {{ block.shopify_attributes }} aria-label="Shop this look">
-      <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
+      <img src="{{ look_img_src }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
       <span class="stl-cta">{{ section.settings.cta | default: 'SHOP THIS LOOK' }}</span>
     </button>
   {%- endfor -%}
@@ -14,11 +24,20 @@
 {%- comment -%} ---- modals ---- {%- endcomment -%}
 {%- for block in section.blocks -%}
   {%- assign look_id = 'look-' | append: block.id -%}
+  {%- assign first_handle = block.settings.products | split: ',' | first | strip -%}
+  {%- assign first_prod = all_products[first_handle] -%}
+  {%- if block.settings.image_url != blank -%}
+    {%- assign look_thumb_src = block.settings.image_url -%}
+  {%- elsif first_prod != blank and first_prod.featured_image -%}
+    {%- assign look_thumb_src = first_prod.featured_image | image_url: width: 120 -%}
+  {%- else -%}
+    {%- assign look_thumb_src = '' -%}
+  {%- endif -%}
   <div class="look-modal" id="{{ look_id }}" data-look-modal hidden>
     <div class="look-overlay" data-look-close></div>
     <div class="look-dialog" role="dialog" aria-modal="true" aria-label="Shop this look">
       <div class="look-modal-head">
-        <img class="look-hero-thumb" src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" width="56" height="56" loading="lazy">
+        <img class="look-hero-thumb" src="{{ look_thumb_src }}" alt="{{ block.settings.alt | escape }}" width="56" height="56" loading="lazy">
         <span class="look-modal-label">SHOP THIS LOOK</span>
         <button type="button" class="look-x" data-look-close aria-label="Close">{% render 'icon', name: 'close', size: 18 %}</button>
       </div>

@@ -59,7 +59,7 @@ body.menu-open{overflow:hidden}
 
 /* featured collections */
 .fc-title{text-align:center;font-family:var(--serif);letter-spacing:.16em;font-size:14px;color:#333;padding:44px 0 22px;font-weight:400;text-transform:uppercase;margin:0}
-.fc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:0 4px 40px}
+.fc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 4px 40px}
 @media(max-width:900px){.fc-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.fc-grid{grid-template-columns:repeat(2,1fr)}}
 .fc-tile{display:block;text-decoration:none;overflow:hidden;background:#f8f8f8;position:relative}
