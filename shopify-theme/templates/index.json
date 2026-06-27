@@ -24,39 +24,6 @@
       },
       "block_order": ["s1", "s2", "s3"]
     },
-    "collections": {
-      "type": "featured-collections",
-      "settings": {
-        "title": "SHOP BY CATEGORY"
-      },
-      "blocks": {
-        "c1": {
-          "type": "collection_tile",
-          "settings": {
-            "label": "Tops",
-            "collection": "tops",
-            "link": "/collections/tops"
-          }
-        },
-        "c2": {
-          "type": "collection_tile",
-          "settings": {
-            "label": "Bottoms",
-            "collection": "bottoms",
-            "link": "/collections/bottoms"
-          }
-        },
-        "c3": {
-          "type": "collection_tile",
-          "settings": {
-            "label": "Summer",
-            "collection": "summer",
-            "link": "/collections/summer"
-          }
-        }
-      },
-      "block_order": ["c1", "c2", "c3"]
-    },
     "stl": {
       "type": "shop-the-look",
       "settings": {
@@ -96,5 +63,5 @@
       "block_order": ["t1", "t2", "t3", "t4"]
     }
   },
-  "order": ["hero", "collections", "stl"]
+  "order": ["hero", "stl"]
 }
