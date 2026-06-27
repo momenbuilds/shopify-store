@@ -15,7 +15,7 @@
       {%- assign look_img_src = '' -%}
     {%- endif -%}
     <button type="button" class="stl-look" data-look-open="{{ look_id }}" {{ block.shopify_attributes }} aria-label="Shop this look">
-      <img src="{{ look_img_src }}" alt="{{ block.settings.alt | escape }}" width="700" height="900" loading="lazy">
+      <img src="{{ look_img_src }}" alt="{{ block.settings.alt | escape }}" width="700" height="700" loading="lazy">
       <span class="stl-cta">{{ section.settings.cta | default: 'SHOP THIS LOOK' }}</span>
     </button>
   {%- endfor -%}

@@ -6,19 +6,22 @@
         "s1": {
           "type": "slide",
           "settings": {
-            "link": "/products/summer-vacation-backless-tank-tops-polka-dots-print-crop-tops-2000s-retro-cute-girl-lace-trim-v-neck-sleeveless-camis-y2k-vest"
+            "link": "/products/summer-vacation-backless-tank-tops-polka-dots-print-crop-tops-2000s-retro-cute-girl-lace-trim-v-neck-sleeveless-camis-y2k-vest",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/hero1.png?v=1782601554"
           }
         },
         "s2": {
           "type": "slide",
           "settings": {
-            "link": "/products/y2k-milkmaid-summer-top"
+            "link": "/products/y2k-milkmaid-summer-top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/hero2.png?v=1782601563"
           }
         },
         "s3": {
           "type": "slide",
           "settings": {
-            "link": "/products/low-waist-bell-bottom-jeans-womens-style-slim-fit-long-leggings-american-hot-girl-tapered-hip-lifting-slimming-micro-flared"
+            "link": "/products/low-waist-bell-bottom-jeans-womens-style-slim-fit-long-leggings-american-hot-girl-tapered-hip-lifting-slimming-micro-flared",
+            "image_url": "https://cdn.shopify.com/s/files/1/0704/6401/2501/files/hero3.png?v=1782601571"
           }
         }
       },

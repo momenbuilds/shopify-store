@@ -85,7 +85,7 @@ body.menu-open{overflow:hidden}
 .stl-title{text-align:center;font-family:var(--serif);letter-spacing:.16em;font-size:14px;color:#333;padding:40px 0 20px;font-weight:400;text-transform:uppercase}
 .stl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 4px 4px}
 .stl-look{position:relative;display:block;overflow:hidden;background:#f8f8f8;border:none;padding:0;cursor:pointer;width:100%}
-.stl-look img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .8s ease}
+.stl-look img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .8s ease}
 .stl-look:hover img{transform:scale(1.04)}
 .stl-cta{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:#fff;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-shadow:0 1px 12px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none;text-transform:uppercase;font-weight:500}
 
