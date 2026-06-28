@@ -7,14 +7,14 @@
           "type": "slide",
           "settings": {
             "image_url": "hero-1.jpg",
-            "link": "/products/summer-vacation-backless-tank-tops-polka-dots-print-crop-tops-2000s-retro-cute-girl-lace-trim-v-neck-sleeveless-camis-y2k-vest"
+            "link": "/collections/all?sort_by=created-descending"
           }
         },
         "s2": {
           "type": "slide",
           "settings": {
             "image_url": "hero-2.jpg",
-            "link": "/products/y2k-milkmaid-summer-top"
+            "link": "/collections/all?sort_by=created-descending"
           }
         }
       },
