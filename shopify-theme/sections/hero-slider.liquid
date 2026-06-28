@@ -19,9 +19,13 @@
         {%- assign slide_label = '' -%}
         {%- assign slide_alt = block.settings.alt -%}
       {%- endif -%}
-      {%- comment -%} Image: a manual URL wins, otherwise pull the linked product's image. {%- endcomment -%}
+      {%- comment -%} Image: a manual URL or theme-asset filename wins, otherwise pull the linked product's image. {%- endcomment -%}
       {%- if block.settings.image_url != blank -%}
-        {%- assign slide_img_src = block.settings.image_url -%}
+        {%- if block.settings.image_url contains '//' -%}
+          {%- assign slide_img_src = block.settings.image_url -%}
+        {%- else -%}
+          {%- assign slide_img_src = block.settings.image_url | asset_url -%}
+        {%- endif -%}
       {%- elsif slide_product != blank and slide_product.featured_image -%}
         {%- assign slide_img_src = slide_product.featured_image | image_url: width: 1600 -%}
       {%- else -%}
@@ -73,7 +77,7 @@
       "type": "slide",
       "name": "Slide",
       "settings": [
-        { "type": "text", "id": "image_url", "label": "Image URL" },
+        { "type": "text", "id": "image_url", "label": "Image URL", "info": "Full image URL, or a theme asset filename like hero-1.jpg. Leave blank to use the linked product's image." },
         { "type": "text", "id": "alt", "label": "Alt text" },
         { "type": "text", "id": "heading", "label": "Heading (optional overlay text)" },
         { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop Now" },
